@@ -1,6 +1,6 @@
 services:
   db:
-    image: pgvector/pgvector:pg15
+    image: pgvector/pgvector:pg16
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -13,6 +13,7 @@ services:
 
   backend:
     image: matiasbarrerahuemul/wisecore-backend:latest
+    platform: linux/amd64
     restart: always
     ports:
       - "8000:8080"
@@ -21,11 +22,20 @@ services:
     environment:
       DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       ALEMBIC_DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT}
+      AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY}
+      OPENAI_API_VERSION: ${OPENAI_API_VERSION}
+      WATSONX_APIKEY: ${WATSONX_APIKEY}
+      WATSONX_PROJECT_ID: ${WATSONX_PROJECT_ID}
+      WATSONX_URL: ${WATSONX_URL}
     depends_on:
       - db
     command: >
-      sh -c alembic upgrade head &&
+      sh -c "until pg_isready -h db -p 5432 -U usuario;
+            do echo 'Esperando a Postgres...'; sleep 2; done;
+            alembic upgrade head &&
             gunicorn -k uvicorn.workers.UvicornWorker src.main:app --bind 0.0.0.0:8080"
+ 
 
   frontend:
     image: matiasbarrerahuemul/wisecore-frontend:latest
