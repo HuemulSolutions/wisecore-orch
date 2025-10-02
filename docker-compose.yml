@@ -10,6 +10,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d
 
   backend:
     image: matiasbarrerahuemul/wisecore-backend:latest
@@ -35,7 +36,6 @@ services:
             do echo 'Esperando a Postgres...'; sleep 2; done;
             alembic upgrade head &&
             gunicorn -k uvicorn.workers.UvicornWorker src.main:app --bind 0.0.0.0:8080"
- 
 
   frontend:
     image: matiasbarrerahuemul/wisecore-frontend:latest
