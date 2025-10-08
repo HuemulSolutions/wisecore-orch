@@ -7,7 +7,7 @@
 ## Installation
 1. Clone this repository
 
-2. Configure models in IBM Model Gateway (docs: https://www.ibm.com/docs/en/watsonx/saas?topic=preview-setting-up-model-gateway-code#watsonx-ai)
+2. Configure models in IBM Model Gateway (docs: https://www.ibm.com/docs/en/watsonx/saas?topic=preview-setting-up-model-gateway-code)
 The models must have the following aliases:
     - azure-gpt-4.1
     - claude-sonnet-4
@@ -23,8 +23,6 @@ Copy `.env.example` to `.env` and fill in your credentials:
 - IBM Model gateway: MODEL_GATEWAY_URL, MODEL_GATEWAY_APIKEY
 
 
-
-
 3. Run:
    ```bash
    docker compose up -d
@@ -36,5 +34,5 @@ Copy `.env.example` to `.env` and fill in your credentials:
 
 ## Notes
 Backend and frontend images are obtained from Docker Hub:
-- matiasbarrerahuemul/wisecore-backend:latest
-- matiasbarrerahuemul/wisecore-frontend:latest
+- huemulsolutions/wisecore-backend
+- huemulsolutions/wisecore-front

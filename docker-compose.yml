@@ -18,7 +18,7 @@ services:
       retries: 5
 
   backend:
-    image: matiasbarrerahuemul/wisecore-backend:latest
+    image: huemulsolutions/wisecore-backend:latest
     platform: linux/amd64
     restart: always
     ports:
@@ -38,7 +38,7 @@ services:
             gunicorn -k uvicorn.workers.UvicornWorker src.main:app --bind 0.0.0.0:8080"
 
   frontend:
-    image: matiasbarrerahuemul/wisecore-frontend:latest
+    image: huemulsolutions/wisecore-front:latest
     restart: always
     ports:
       - "3000:3000"
