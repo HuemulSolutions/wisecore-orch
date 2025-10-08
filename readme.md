@@ -1,29 +1,40 @@
 # Wisecore Orchestrator
 
-## Requisitos
+## Requirements
 - Docker
 - Docker Compose
 
-## Instalación
-1. Clonar este repositorio
+## Installation
+1. Clone this repository
 
-2. Ajustar el archivo de variables de entorno:
-Copia `.env.example` a `.env` y completa tus credenciales:
-- Base de datos: POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB
+2. Configure models in IBM Model Gateway (docs: https://www.ibm.com/docs/en/watsonx/saas?topic=preview-setting-up-model-gateway-code#watsonx-ai)
+The models must have the following aliases:
+    - azure-gpt-4.1
+    - claude-sonnet-4
+    - ibm-llama-maverick
+    - ibm-gpt-oss
+    - granite-4
+
+
+3. Adjust the environment variables file:
+Copy `.env.example` to `.env` and fill in your credentials:
+- Database: POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB
 - Backend: DATABASE_URL, ALEMBIC_DATABASE_URL
-- Watsonx/Azure: WATSONX_APIKEY, WATSONX_PROJECT_ID, WATSONX_URL
-- Azure OpenAI: AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_API_KEY, OPENAI_API_VERSION
+- IBM Model gateway: MODEL_GATEWAY_URL, MODEL_GATEWAY_APIKEY
 
-3. Ejecutar:
+
+
+
+3. Run:
    ```bash
    docker compose up -d
 
-4. Acceder:
+4. Access:
     - Backend: http://localhost:8000/docs
     - Frontend: http://localhost:3000
 
 
-## Notas
-Las imágenes de backend y frontend se obtienen desde Docker Hub:
+## Notes
+Backend and frontend images are obtained from Docker Hub:
 - matiasbarrerahuemul/wisecore-backend:latest
 - matiasbarrerahuemul/wisecore-frontend:latest
