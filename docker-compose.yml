@@ -30,7 +30,7 @@ services:
       - "8200:8200"
 
   backend:
-    image: huemulsolutions/wisecore-backend-dev:latest
+    image: huemulsolutions/wisecore-backend:latest
     platform: linux/amd64
     restart: always
     ports:
@@ -53,7 +53,7 @@ services:
             gunicorn -k uvicorn.workers.UvicornWorker src.main:app --bind 0.0.0.0:8080"
 
   frontend:
-    image: huemulsolutions/wisecore-frontend-dev:latest
+    image: huemulsolutions/wisecore-front:latest
     restart: always
     ports:
       - "3000:3000"
@@ -61,7 +61,7 @@ services:
       - backend
 
   worker:
-    image: huemulsolutions/wisecore-backend-dev:latest
+    image: huemulsolutions/wisecore-backend:latest
     platform: linux/amd64
     restart: always
     ports:
