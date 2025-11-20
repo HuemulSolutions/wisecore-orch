@@ -6,8 +6,11 @@
 
 ## Installation
 1. Clone this repository
+   ```
+     git clone https://github.com/HuemulSolutions/wisecore-orch.git
+   ```
 
-2. Configure models in IBM Model Gateway (docs: https://www.ibm.com/docs/en/watsonx/saas?topic=preview-setting-up-model-gateway-code)
+2. (OPTIONAL): Configure models in IBM Model Gateway (docs: https://www.ibm.com/docs/en/watsonx/saas?topic=preview-setting-up-model-gateway-code)
 The models must have the following aliases:
     - azure-gpt-4.1
     - claude-sonnet-4
@@ -16,11 +19,11 @@ The models must have the following aliases:
     - granite-4
 
 
-3. Adjust the environment variables file:
+4. Adjust the environment variables file:
 Copy `.env.example` to `.env` and fill in your credentials:
-- Database: POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB
-- Backend: DATABASE_URL, ALEMBIC_DATABASE_URL
-- IBM Model gateway: MODEL_GATEWAY_URL, MODEL_GATEWAY_APIKEY
+- POSTGRES_USER=postgres # no modificar
+- POSTGRES_PASSWORD="<contraseña>"
+- POSTGRES_DB="<nombre DB>"
 
 
 3. Run:
